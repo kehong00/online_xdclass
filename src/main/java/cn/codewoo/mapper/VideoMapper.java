@@ -14,4 +14,11 @@ public interface VideoMapper {
      * @return
      */
     List<Video> list();
+
+    /**
+     * 根据视频id查询视频详情，包含章节信息，章节中的集数信息
+     * @param videoId
+     * @return
+     */
+    Video selectVideoDetailById(Integer videoId);
 }

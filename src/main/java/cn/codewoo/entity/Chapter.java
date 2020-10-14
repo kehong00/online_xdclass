@@ -3,6 +3,8 @@ package cn.codewoo.entity;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.util.Date;
+import java.util.List;
+
 /**
  * @author kehong
  * 章节实体类
@@ -22,6 +24,17 @@ public class Chapter {
 
     @ApiModelProperty("创建时间")
     private Date createTime;
+
+    @ApiModelProperty("章节中的集")
+    private List<Episode> episodeList;
+
+    public List<Episode> getEpisodeList() {
+        return episodeList;
+    }
+
+    public void setEpisodeList(List<Episode> episodeList) {
+        this.episodeList = episodeList;
+    }
 
     public Integer getId() {
         return id;
@@ -71,6 +84,7 @@ public class Chapter {
                 ", title='" + title + '\'' +
                 ", ordered=" + ordered +
                 ", createTime=" + createTime +
+                ", episodeList=" + episodeList +
                 '}';
     }
 }

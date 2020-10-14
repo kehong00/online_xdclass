@@ -13,5 +13,16 @@ public interface IVideoService {
      */
     DataResult list();
 
+    /**
+     * 测试用的
+     * @return
+     */
     Object getList();
+
+    /**
+     * 根据视频id获取视频详情
+     * @param videoId
+     * @return
+     */
+    DataResult selectVideoDetailById(Integer videoId);
 }

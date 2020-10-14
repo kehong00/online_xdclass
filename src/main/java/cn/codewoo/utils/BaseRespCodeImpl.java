@@ -13,7 +13,11 @@ public enum BaseRespCodeImpl implements IBaseRespCode {
     /**
      * 默认失败
      */
-    ERROR(-1,"操作失败")
+    ERROR(-1,"操作失败"),
+    /**
+     * 系统异常响应码
+     */
+    SYS_ERROR(50000,"系统错误");
     ;
 
     /**

@@ -23,7 +23,7 @@ public class Episode {
     @ApiModelProperty("是否是付费章节")
     private Integer free;
     @ApiModelProperty("所属视频id")
-    private Integer video_id;
+    private Integer videoId;
     @ApiModelProperty("创建时间")
     private Date createTime;
 
@@ -37,7 +37,7 @@ public class Episode {
                 ", playUrl='" + playUrl + '\'' +
                 ", chapterId=" + chapterId +
                 ", free=" + free +
-                ", video_id=" + video_id +
+                ", videoId=" + videoId +
                 ", createTime=" + createTime +
                 '}';
     }
@@ -98,12 +98,12 @@ public class Episode {
         this.free = free;
     }
 
-    public Integer getVideo_id() {
-        return video_id;
+    public Integer getVideoId() {
+        return videoId;
     }
 
-    public void setVideo_id(Integer video_id) {
-        this.video_id = video_id;
+    public void setVideoId(Integer videoId) {
+        this.videoId = videoId;
     }
 
     public Date getCreateTime() {

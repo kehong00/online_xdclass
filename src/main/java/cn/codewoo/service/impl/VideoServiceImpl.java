@@ -22,4 +22,11 @@ public class VideoServiceImpl implements IVideoService {
     public Object getList() {
         return videoMapper.list();
     }
+
+    @Override
+    public DataResult selectVideoDetailById(Integer videoId) {
+        return DataResult.success(videoMapper.selectVideoDetailById(videoId));
+    }
+
+
 }

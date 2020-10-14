@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -39,6 +40,12 @@ public class VideoController {
     @GetMapping("/put/getList")
     public Object videoList_test(){
         return videoService.getList();
+    }
+
+    @ApiOperation(("根据视频id获取视频详情"))
+    @GetMapping("/put/video")
+    public DataResult getVideo(@RequestParam(value = "videoId",required = true) Integer videoId){
+        return videoService.selectVideoDetailById(videoId);
     }
 
 

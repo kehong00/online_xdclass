@@ -8,6 +8,8 @@ package cn.codewoo.entity;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.util.Date;
+import java.util.List;
+
 public class Video {
     @ApiModelProperty("id")
     private Integer id;
@@ -23,6 +25,17 @@ public class Video {
     private Date createTime;
     @ApiModelProperty("评分")
     private Double point;
+
+    @ApiModelProperty("视频的章节")
+    private List<Chapter> chapterList;
+
+    public List<Chapter> getChapterList() {
+        return chapterList;
+    }
+
+    public void setChapterList(List<Chapter> chapterList) {
+        this.chapterList = chapterList;
+    }
 
     public Integer getId() {
         return id;
@@ -90,6 +103,7 @@ public class Video {
                 ", price=" + price +
                 ", createTime=" + createTime +
                 ", point=" + point +
+                ", chapterList=" + chapterList +
                 '}';
     }
 }

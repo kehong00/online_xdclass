@@ -1,7 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.codewoo.mapper.VideoMapper">
+
+    <resultMap id="selectVideoDetailResultMap" type="video">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="cover_img" jdbcType="VARCHAR" property="coverImg"/>
+        <result column="price" jdbcType="INTEGER" property="price"/>
+        <result column="point" jdbcType="DOUBLE" property="point"/>
+        <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
+        <collection property="chapterList" ofType="chapter">
+            <id column="chapter_id" jdbcType="INTEGER" property="id"/>
+            <result column="chapter_title" jdbcType="VARCHAR" property="title"/>
+            <result column="chapter_order" jdbcType="INTEGER" property="ordered"/>
+            <result column="chapter_video_id" jdbcType="INTEGER" property="videoId"/>
+            <collection property="episodeList" ofType="episode">
+                <id column="episode_id" jdbcType="INTEGER" property="id"/>
+                <result column="episode_video_id" jdbcType="INTEGER" property="videoId"/>
+                <result column="episode_ordered" jdbcType="INTEGER" property="ordered"/>
+                <result column="episode_create_time" jdbcType="TIMESTAMP" property="createTime"/>
+                <result column="episode_title" jdbcType="VARCHAR" property="title"/>
+                <result column="episode_chapter_id" jdbcType="INTEGER" property="chapterId"/>
+                <result column="free" jdbcType="INTEGER" property="free"/>
+                <result column="num" jdbcType="INTEGER" property="num"/>
+                <result column="play_url" jdbcType="VARCHAR" property="playUrl"/>
+            </collection>
+        </collection>
+    </resultMap>
+
     <select id="list" resultType="video">
         SELECT * FROM video;
+    </select>
+
+    <select id="selectVideoDetailById" parameterType="int" resultMap="selectVideoDetailResultMap">
+        select v.id,v.title,v.cover_img,v.price,v.point,v.create_time,
+               c.id as chapter_id,c.title as chapter_title,c.create_time as chapter_create_time,c.ordered as chapter_ordered,c.video_id as chapter_video_id,
+               e.id as episode_id,e.ordered as episode_ordered,e.video_id as episode_video_id,e.create_time as episode_create_time,e.title as episode_title,e.chapter_id as episode_chapter_id,e.free,e.num,e.play_url
+        from video v
+                 left join chapter c on (v.id = c.video_id)
+                 left join episode e on (c.id = e.chapter_id)
+        where v.id = #{id}
+        order by c.ordered,e.num;
     </select>
 </mapper>
