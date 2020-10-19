@@ -1,6 +1,7 @@
 package cn.codewoo.service;
 
 import cn.codewoo.entity.User;
+import cn.codewoo.vo.req.UserLoginReqVO;
 import cn.codewoo.vo.req.UserRegisterReqVO;
 
 /**
@@ -14,4 +15,18 @@ public interface IUserService {
      * @return
      */
     User register(UserRegisterReqVO vo);
+
+    /**
+     * 用户登录接口
+     * @param vo
+     * @return
+     */
+    String login(UserLoginReqVO vo);
+
+    /**
+     * 根据token中的用户id获取用户信息
+     * @param token
+     * @return
+     */
+    User getUserInfoByToken(String token);
 }

@@ -38,3 +38,6 @@ mybatis:
     cache-enabled: false
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: cn.codewoo.entity
+logging:
+  level:
+    cn.codewoo: debug
