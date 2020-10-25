@@ -1,5 +1,7 @@
 package cn.codewoo.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.util.Date;
@@ -14,6 +16,7 @@ public class Chapter {
     private Integer id;
 
     @ApiModelProperty("视频主键")
+    @JsonProperty("video_id")
     private Integer videoId;
 
     @ApiModelProperty("章节名称")
@@ -23,9 +26,12 @@ public class Chapter {
     private Integer ordered;
 
     @ApiModelProperty("创建时间")
+    @JsonProperty("create_time")
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Date createTime;
 
     @ApiModelProperty("章节中的集")
+    @JsonProperty("episode_list")
     private List<Episode> episodeList;
 
     public List<Episode> getEpisodeList() {

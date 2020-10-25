@@ -5,34 +5,44 @@ package cn.codewoo.entity;
  * 视频订单实体类
  */
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.util.Date;
 public class VideoOrder {
     @ApiModelProperty("id")
-    private String id;
+    private Integer id;
     @ApiModelProperty("订单唯一标识")
+    @JsonProperty("out_trade_no")
     private String outTradeNo;
     @ApiModelProperty("订单状态：0表示未支付，1表示已支付")
     private Integer state;
     @ApiModelProperty("订单生成时间")
+    @JsonProperty("create_time")
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Date createTime;
     @ApiModelProperty("支付金额，单位：分")
+    @JsonProperty("total_fee")
     private Integer totalFee;
     @ApiModelProperty("视频主键")
+    @JsonProperty("video_id")
     private Integer videoId;
     @ApiModelProperty("视频标题")
+    @JsonProperty("video_title")
     private String videoTitle;
     @ApiModelProperty("视频图片")
-    private String videoImage;
+    @JsonProperty("video_img")
+    private String videoImg;
     @ApiModelProperty("用户id")
+    @JsonProperty("user_id")
     private Integer userId;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void Integer(Integer id) {
         this.id = id;
     }
 
@@ -84,12 +94,12 @@ public class VideoOrder {
         this.videoTitle = videoTitle;
     }
 
-    public String getVideoImage() {
-        return videoImage;
+    public String getVideoImg() {
+        return videoImg;
     }
 
-    public void setVideoImage(String videoImage) {
-        this.videoImage = videoImage;
+    public void setVideoImg(String videoImg) {
+        this.videoImg = videoImg;
     }
 
     public Integer getUserId() {
@@ -110,7 +120,7 @@ public class VideoOrder {
                 ", totalFee=" + totalFee +
                 ", videoId=" + videoId +
                 ", videoTitle='" + videoTitle + '\'' +
-                ", videoImage='" + videoImage + '\'' +
+                ", videoImg='" + videoImg + '\'' +
                 ", userId=" + userId +
                 '}';
     }

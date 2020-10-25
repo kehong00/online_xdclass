@@ -24,6 +24,9 @@ public enum BaseRespCodeImpl implements IBaseRespCode {
     NOT_LOGIN(40006,"没有登录，请登录"),
     LOGIN_EXPIRE(40007,"用户凭证已过期，请重新登录"),
     AUTHENTICATED_ERROR(40008,"认证失败，请重试"),
+    VIDEO_ORDER_NOT_EXISTS(40009,"你已经购买过此视频"),
+    VIDEO_NOT_EXISTS(40010,"选择的视频不存在"),
+    PLAY_RECORD_SAVE_ERROR(40011,"插入播放记录失败")
     ;
 
     /**

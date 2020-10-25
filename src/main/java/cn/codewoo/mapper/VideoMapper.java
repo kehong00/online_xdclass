@@ -21,4 +21,11 @@ public interface VideoMapper {
      * @return
      */
     Video selectVideoDetailById(Integer videoId);
+
+    /**
+     * 根据视频id，查询视频信息
+     * @param videoId
+     * @return
+     */
+    Video selectVideoById(Integer videoId);
 }

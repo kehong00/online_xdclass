@@ -4,6 +4,8 @@ package cn.codewoo.entity;
  * @author kehong
  */
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.util.Date;
@@ -17,14 +19,19 @@ public class Episode {
     @ApiModelProperty("顺序，章节里的顺序")
     private Integer ordered;
     @ApiModelProperty("播放地址")
+    @JsonProperty("play_url")
     private String playUrl;
     @ApiModelProperty("章节组件")
+    @JsonProperty("chapter_id")
     private Integer chapterId;
     @ApiModelProperty("是否是付费章节")
     private Integer free;
     @ApiModelProperty("所属视频id")
+    @JsonProperty("video_id")
     private Integer videoId;
     @ApiModelProperty("创建时间")
+    @JsonProperty("create_time")
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Date createTime;
 
     @Override

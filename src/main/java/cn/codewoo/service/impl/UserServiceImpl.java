@@ -37,7 +37,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public String login(UserLoginReqVO vo) {
-        User user = userMapper.selectUserByName(vo.getName());
+        User user = userMapper.selectUserByPhone(vo.getPhone());
         if (user == null){
             throw new BusinessException(BaseRespCodeImpl.USER_LOGIN_NOT_FOUNT);
         }

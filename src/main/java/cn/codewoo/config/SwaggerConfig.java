@@ -49,7 +49,7 @@ public class SwaggerConfig {
 
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo)
-                .enable(true)
+                .enable(false)
                 .globalOperationParameters(parameters)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("cn.codewoo.controller"))

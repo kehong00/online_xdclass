@@ -6,7 +6,11 @@ package cn.codewoo.constant;
  */
 public enum  Constants {
     //认证请求
-    AUTHENTICATED_TOKEN
+    AUTHENTICATED_TOKEN,
+    //轮播图缓存key
+    INDEX_BANNER_LIST,
+    INDEX_VIDEO_LIST
+
     ;
 
 }

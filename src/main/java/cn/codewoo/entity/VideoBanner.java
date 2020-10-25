@@ -5,6 +5,8 @@ package cn.codewoo.entity;
  * 视频轮播图实体类
  */
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -17,6 +19,8 @@ public class VideoBanner {
     @ApiModelProperty("图片地址")
     private String img;
     @ApiModelProperty("创建时间")
+    @JsonProperty("create_time")
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Date createTime;
     @ApiModelProperty("权重，数字越小，越靠前")
     private Integer weight;

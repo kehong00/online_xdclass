@@ -17,7 +17,7 @@ public interface IVideoService {
      * 测试用的
      * @return
      */
-    Object getList();
+    DataResult getList();
 
     /**
      * 根据视频id获取视频详情

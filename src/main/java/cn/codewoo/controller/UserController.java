@@ -25,6 +25,7 @@ public class UserController {
     @ApiOperation("用户注册接口")
     @PostMapping("/register")
     public DataResult register(@RequestBody UserRegisterReqVO vo){
+        System.out.println(vo);
         return DataResult.success(userService.register(vo));
     }
 

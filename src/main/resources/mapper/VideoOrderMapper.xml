@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.codewoo.mapper.VideoOrderMapper">
+    <resultMap id="BaseResultMap" type="cn.codewoo.entity.VideoOrder">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="out_trade_no" property="outTradeNo" jdbcType="VARCHAR"/>
+        <result column="state" property="state" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="total_fee" property="totalFee" jdbcType="INTEGER"/>
+        <result column="video_id" property="videoId" jdbcType="INTEGER"/>
+        <result column="video_title" property="videoTitle" jdbcType="VARCHAR"/>
+        <result column="video_img" property="videoImg" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="BaseColumnList">
+        id,out_trade_no,state,create_time,total_fee,video_id,video_title,video_img,user_id
+    </sql>
+
+    <select id="selectVideoOrderByUserIdAndVideoId" resultMap="BaseResultMap">
+
+        SELECT <include refid="BaseColumnList"/>
+        FROM video_order
+        WHERE video_id = #{videoId}
+        and user_id = #{userId}
+        and state = 1
+    </select>
+
+    <insert id="save" parameterType="videoOrder">
+        <selectKey keyProperty="id" resultType="INTEGER" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO video_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="outTradeNo != null">
+                out_trade_no,
+            </if>
+            <if test="state != null and state != 0">
+                state,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="totalFee != null and totalFee != 0">
+                total_fee,
+            </if>
+            <if test="videoId != null and videoId != 0">
+                video_id,
+            </if>
+            <if test="videoTitle != null">
+                video_title,
+            </if>
+            <if test="videoImg != null">
+                video_img,
+            </if>
+            <if test="userId != null and userId != 0">
+                user_id,
+            </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="outTradeNo != null ">
+                #{outTradeNo,jdbcType=VARCHAR},
+            </if>
+            <if test="state != null and state != 0">
+                #{state,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="totalFee != null and totalFee != 0">
+                #{totalFee,jdbcType=INTEGER},
+            </if>
+            <if test="videoId != null and videoId != 0">
+                #{videoId,jdbcType=INTEGER},
+            </if>
+            <if test="videoTitle != null">
+                #{videoTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="videoImg != null">
+                #{videoImg,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null and userId != 0">
+                #{userId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectOrderListByUserId" resultMap="BaseResultMap" parameterType="int">
+        SELECT <include refid="BaseColumnList"/>
+        FROM video_order
+        WHERE user_id = #{userId}
+    </select>
+</mapper>

@@ -5,6 +5,8 @@ package cn.codewoo.entity;
  * 视频实体类
  */
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.util.Date;
@@ -18,10 +20,13 @@ public class Video {
     @ApiModelProperty("视频概述")
     private String summary;
     @ApiModelProperty("封面图片")
+    @JsonProperty("cover_img")
     private String coverImg;
     @ApiModelProperty("价格，单位：分")
     private Integer price;
     @ApiModelProperty("创建时间")
+    @JsonProperty("create_time")
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Date createTime;
     @ApiModelProperty("评分")
     private Double point;

@@ -5,6 +5,7 @@
     <resultMap id="selectVideoDetailResultMap" type="video">
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="summary" jdbcType="VARCHAR" property="summary"/>
         <result column="cover_img" jdbcType="VARCHAR" property="coverImg"/>
         <result column="price" jdbcType="INTEGER" property="price"/>
         <result column="point" jdbcType="DOUBLE" property="point"/>
@@ -28,12 +29,26 @@
         </collection>
     </resultMap>
 
+    <resultMap id="BaseResultMap" type="video">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="summary" jdbcType="VARCHAR" property="summary"/>
+        <result column="cover_img" jdbcType="VARCHAR" property="coverImg"/>
+        <result column="price" jdbcType="INTEGER" property="price"/>
+        <result column="point" jdbcType="DOUBLE" property="point"/>
+        <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+
+    <sql id="BaseColumnList">
+        id,title,summary,cover_img,price,create_time,`point`
+    </sql>
+
     <select id="list" resultType="video">
         SELECT * FROM video;
     </select>
 
     <select id="selectVideoDetailById" parameterType="int" resultMap="selectVideoDetailResultMap">
-        select v.id,v.title,v.cover_img,v.price,v.point,v.create_time,
+        select v.id,v.title,v.cover_img,v.price,v.point,v.create_time,v.summary,
                c.id as chapter_id,c.title as chapter_title,c.create_time as chapter_create_time,c.ordered as chapter_ordered,c.video_id as chapter_video_id,
                e.id as episode_id,e.ordered as episode_ordered,e.video_id as episode_video_id,e.create_time as episode_create_time,e.title as episode_title,e.chapter_id as episode_chapter_id,e.free,e.num,e.play_url
         from video v
@@ -41,5 +56,11 @@
                  left join episode e on (c.id = e.chapter_id)
         where v.id = #{id}
         order by c.ordered,e.num;
+    </select>
+
+    <select id="selectVideoById" parameterType="int" resultMap="BaseResultMap">
+        SELECT <include refid="BaseColumnList"/>
+        FROM video
+        WHERE id = #{id}
     </select>
 </mapper>

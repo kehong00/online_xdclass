@@ -6,6 +6,8 @@ package cn.codewoo.entity;
  */
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.util.Date;
@@ -18,9 +20,12 @@ public class User {
     @ApiModelProperty("密码")
     private String pwd;
     @ApiModelProperty("头像")
+    @JsonProperty("head_img")
     private String headImg;
     @ApiModelProperty("手机号")
     private String phone;
+    @JsonProperty("create_time")
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     @ApiModelProperty("创建时间")
     private Date createTime;
 

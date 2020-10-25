@@ -5,21 +5,29 @@ package cn.codewoo.entity;
  */
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.util.Date;
-public class PlayRecode {
+public class PlayRecord {
     @ApiModelProperty("id")
     private Integer id;
     @ApiModelProperty("用户id")
+    @JsonProperty("user_id")
     private Integer userId;
     @ApiModelProperty("视频id")
+    @JsonProperty("video_id")
     private Integer videoId;
     @ApiModelProperty("当前播放到第几集")
+    @JsonProperty("current_num")
     private Integer currentNum;
     @ApiModelProperty("当前播放集数的id")
+    @JsonProperty("episode_id")
     private Integer episodeId;
     @ApiModelProperty("创建时间")
+    @JsonProperty("create_time")
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss",timezone = "GMT+8")
     private Date createTime;
 
     public Integer getId() {
@@ -72,7 +80,7 @@ public class PlayRecode {
 
     @Override
     public String toString() {
-        return "PlayRecode{" +
+        return "PlayRecord{" +
                 "id=" + id +
                 ", userId=" + userId +
                 ", videoId=" + videoId +
